@@ -9,14 +9,11 @@ import th.ac.ku.atm.model.Customer;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class CustomerService {
-//    private List<Customer> customerList;
-//    @PostConstruct
-//    public void postConstruct(){
-//        this.customerList = new ArrayList<>();
-//    }
+
     private CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository) {
@@ -27,12 +24,10 @@ public class CustomerService {
         //...hash pin for customer...
         String hashPin = hash(customer.getPin());
         customer.setPin(hashPin);
-        //customerList.add(customer);
         customerRepository.save(customer);
     }
 
     public List<Customer> getCustomers(){
-        //return new ArrayList<>(this.customerList);
         return customerRepository.findAll();
     }
 
@@ -42,14 +37,9 @@ public class CustomerService {
     }
 
     public Customer findCustomer(int id) {
-//        for (Customer customer : customerList) {
-//            if (customer.getId() == id)
-//                return customer;
-//        }
-//        return null;
         try{
-            return customerRepository.findById(id);
-        } catch (EmptyResultDataAccessException e){
+            return customerRepository.findById(id).get();
+        } catch (NoSuchElementException e){
             return null;
         }
 
