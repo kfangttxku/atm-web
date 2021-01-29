@@ -41,21 +41,23 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-light">
         <tr>
-            <th>Id</th>
-            <th>CustomerId</th>
-            <th>Type</th>
-            <th>Balance</th>
-            <th>Action</th>
+            <th style="text-align: center;">Id</th>
+            <th style="text-align: center;">CustomerId</th>
+            <th style="text-align: center;">Type</th>
+            <th style="text-align: center;">Balance</th>
+            <th style="text-align: center;">Action</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="account : ${bankaccounts}">
-            <td th:text="${account.id}"></td>
-            <td th:text="${account.customerId}"></td>
-            <td th:text="${account.type}"></td>
-            <td th:text="${account.balance}"></td>
-            <td><a class="btn btn-primary" th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
-            <a class="btn btn-primary" th:href="@{/bankaccount/delete/{id}(id=${account.id})}">Delete</a></td>
+            <td style="text-align: center;" th:text="${account.id}"></td>
+            <td style="text-align: center;" th:text="${account.customerId}"></td>
+            <td style="text-align: center;" th:text="${account.type}"></td>
+            <td style="text-align: center;" th:text="${account.balance}"></td>
+            <td style="text-align: center;">
+                <a class="btn btn-primary" th:href="@{/bankaccount/edit/{id}(id=${account.id})}">Edit</a>
+                <a class="btn btn-primary" th:href="@{/bankaccount/delete/{id}(id=${account.id})}">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
